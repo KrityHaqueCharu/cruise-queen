@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curise Booking</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Booking Section-->
+    <main class="main-content container">
+
+        <div class="booking-content">
+            <h1>Cruise Queen</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book./p>
+        </div>
+
+
+        <div class="booking-form">
+            <h3>Book Ocean Time</h3>
+            <div class="input-group">
+                <label for="">Flying From</label>
+                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+            </div>
+            <div class="input-group">
+                <label for="">Flying To</label>
+                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <div>
+                    <label for="">First Class ($150)</label>
+                    <input id="frstcls-input" class="inp-style inp-width" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <p> <span id="frstcls-plus" onclick="increase('frstcls-input')">+</span> <span id="frstcls-minus" onclick="decrease('frstcls-input')">-</span> </p>
+                </div>
+            </div>
+            
+            <div class="input-group f-class">
+                <div>
+                    <label for="">Economy ($100)</label>
+                    <input id="eco-input" class="inp-style inp-width" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <p> <span id="eco-plus" onclick="increase('eco-input')">+</span> <span id="eco-minus" onclick="decrease('eco-input')">-</span> </p>
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="sub">500</span></p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="vat">50</span></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="total-price">550</span></p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-style">Book Now</button>
+        </div>
+    </main>
+
+    <!--Thank You-->
+    <script>
+      function increase(id){
+          var input=document.getElementById(id).value;
+          if(input==""){
+          document.getElementById(id).value=1;
+          }else{
+            var inputnum=parseInt(input);
+            inputnum+=1;
+            document.getElementById(id).value=inputnum;
+           }
+           calc_price();
+        }
+
+
+        function decrease(id){
+          var input=document.getElementById(id).value;
+          var inputnum=parseInt(input);
+          if(inputnum>0){
+            inputnum-=1;
+            document.getElementById(id).value=inputnum;
+           }
+           calc_price();
+        }
+
+        
+        function calc_price(){
+           var ecoprice=parseInt(document.getElementById("eco-input").value)*100;
+           var frstprice=parseInt(document.getElementById("frstcls-input").value)*150;
+           var price=ecoprice+frstprice;
+           document.getElementById("sub").innerText=price;
+           var vat=price*0.1;
+           document.getElementById("vat").innerText=vat;
+           var total=price+vat;
+           document.getElementById("total-price").innerText=total;
+        }
+    </script>
+</body>
+
+</html>
